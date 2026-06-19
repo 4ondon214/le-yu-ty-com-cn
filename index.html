@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>乐鱼体育 · 主场叙事</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #f6f4f0;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.6;
+      color: #1e1c1a;
+    }
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* --- hero 深色头图 --- */
+    .hero {
+      background: linear-gradient(145deg, #0d0b0a 0%, #1f1c18 100%);
+      min-height: 72vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 64px 24px;
+      border-bottom: 4px solid #dbb87c;
+    }
+    .hero-content h1 {
+      font-size: clamp(2.8rem, 8vw, 5rem);
+      font-weight: 550;
+      letter-spacing: -0.02em;
+      color: #ede4d0;
+      margin-bottom: 0.3em;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    }
+    .hero-content .sub {
+      font-size: 1.4rem;
+      color: #bc9f6b;
+      font-weight: 380;
+      letter-spacing: 0.06em;
+      max-width: 580px;
+      margin: 0 auto 1.6rem;
+      border-top: 1px solid #3b352f;
+      padding-top: 1rem;
+    }
+    .hero-content p {
+      color: #bbb0a1;
+      font-size: 1.1rem;
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* --- 浅色正文区 --- */
+    section {
+      padding: 60px 0;
+    }
+    .section-title {
+      font-size: 1.9rem;
+      font-weight: 460;
+      letter-spacing: -0.01em;
+      border-left: 5px solid #dbb87c;
+      padding-left: 18px;
+      margin-bottom: 28px;
+      color: #1f1c18;
+    }
+    .card-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 32px 28px;
+      flex: 1 1 280px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.02);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(0,0,0,0.06);
+    }
+    .card h3 {
+      font-size: 1.5rem;
+      font-weight: 460;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+      color: #1f1c18;
+    }
+    .card p {
+      font-size: 1rem;
+      color: #3a3632;
+      line-height: 1.7;
+    }
+    .highlight-link {
+      color: #b4853c;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: #dbb87c;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .highlight-link:hover {
+      color: #7a5f30;
+      text-decoration-color: #7a5f30;
+    }
+
+    /* --- 场景段落 --- */
+    .scene-block {
+      background: #f0ede8;
+      border-radius: 24px;
+      padding: 36px 32px;
+      margin-bottom: 48px;
+    }
+    .scene-block p {
+      margin-bottom: 1.1rem;
+      font-size: 1.05rem;
+    }
+    .scene-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* --- FAQ 摘要 --- */
+    .faq-summary {
+      background: #fffcf7;
+      border-radius: 28px;
+      padding: 40px 32px;
+      border: 1px solid #e6dfd5;
+      margin-top: 16px;
+    }
+    .faq-item {
+      margin-bottom: 24px;
+    }
+    .faq-item:last-child {
+      margin-bottom: 0;
+    }
+    .faq-item strong {
+      display: block;
+      font-weight: 520;
+      color: #2b2722;
+      margin-bottom: 6px;
+      font-size: 1.1rem;
+    }
+    .faq-item span {
+      color: #4d4640;
+      line-height: 1.65;
+    }
+
+    /* --- 页尾 --- */
+    footer {
+      background: #1a1815;
+      color: #a69b8d;
+      padding: 48px 24px 40px;
+      margin-top: 20px;
+    }
+    .footer-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .footer-inner p {
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+    }
+    .footer-inner .tagline {
+      color: #dbb87c;
+      font-weight: 400;
+    }
+
+    /* --- 响应式 --- */
+    @media (max-width: 680px) {
+      .hero { min-height: 60vh; padding: 48px 20px; }
+      .hero-content h1 { font-size: 2.6rem; }
+      .section-title { font-size: 1.6rem; }
+      .card { padding: 26px 20px; }
+      .scene-block { padding: 28px 20px; }
+      .faq-summary { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- hero 深色头图 -->
+<header class="hero">
+  <div class="hero-content">
+    <h1>乐鱼体育</h1>
+    <div class="sub">自然的律动 · 运动的叙事</div>
+    <p>从水域到绿地，从日常锻炼到场馆竞技——<br>体育从来不只是分数，更是一种生活方式的表达。</p>
+  </div>
+</header>
+
+<main class="container">
+
+  <!-- 背景说明 + 三段自然介绍（杂志专题式） -->
+  <section>
+    <h2 class="section-title">从滨水出发</h2>
+    <div class="card-grid">
+      <div class="card">
+        <h3>水岸 · 日常</h3>
+        <p>清晨的运河边、黄昏的湖畔步道，很多人选择在水边慢跑或骑行。水的存在让运动多了一分透气感——不刻意、不拥挤，只有呼吸与节奏。这种融入自然的生活动线，正是许多人重新理解体育的起点。</p>
+      </div>
+      <div class="card">
+        <h3>场馆 · 社区 </h3>
+        <p>篮球场的碰撞声、羽毛球馆的跑动——社区体育空间越来越成为邻里交流的场所。不需要专业级别，只需要一个可以出汗、可以笑的地方。当运动变成一种社交语言，它就不再只是“锻炼”。</p>
+      </div>
+      <div class="card">
+        <h3>节奏 · 自我</h3>
+        <p>也有人更喜欢独自面对泳道或跑道——重复、专注、放空。体育最诚实的一面是：它不欺骗身体，也不欺骗时间。在一次次重复中找到自己的边界，然后悄悄拓宽它。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 进一步的自然段落介绍，内容更深 -->
+  <section>
+    <div class="scene-block">
+      <p>体育的主题往往围绕“在场”展开。无论是现场观赛的欢呼，还是屏幕前的专注，人们都在寻找某种连接。而连接的核心，是那些真实发生的动作——射门、扣杀、冲刺、转身。这些瞬间之所以动人，是因为它们无法被完全复制，每一次都有细微的差别。</p>
+      <p>在数字时代，我们获取体育资讯的途径变多了，但真正能让人停下来的，依然是内容本身的故事感和可信度。这也是为什么，一个能够持续提供稳定信息与多元视角的平台，显得尤为重要。如果你刚好在寻找这样一片水域，不妨看看 <a href="https://le-yu-ty.com.cn" class="highlight-link">乐鱼体育</a> 所梳理的内容——它既不喧闹，也不沉寂，更像一个安静的观察者，记录着体育在生活里的各种切面。</p>
+    </div>
+  </section>
+
+  <!-- 第三个自然介绍块：特点与场景融合 -->
+  <section>
+    <h2 class="section-title">在熟悉与陌生之间</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 28px;">
+      <div style="flex: 1 1 260px;">
+        <p style="margin-bottom: 1rem;">很多人对体育的认知来自童年——操场上的追逐、放学后的球赛。成长之后，运动的形式变了，但那种“想要动起来”的念头没有消失。有人重拾跑步，有人尝试攀岩，有人只是每天散步半小时。体育的魅力在于，它不挑剔起点。</p>
+        <p>把体育当作一种长期陪伴，而不是短期冲刺，心态会松弛很多。偶尔突破，偶尔停滞，都没有关系。关键在于，你还在场上。</p>
+      </div>
+      <div style="flex: 1 1 260px;">
+        <p style="margin-bottom: 1rem;">不同的运动对应不同的性格。有人偏爱团队协作中的默契，有人享受独自对抗重力的专注。没有哪一种更高尚，只有哪一种更适合当下的自己。</p>
+        <p>而好的内容，就像一位懂得分寸的朋友：在你需要时提供信息与视角，但从不替你做决定。这也是我们欣赏 <a href="https://le-yu-ty.com.cn" class="highlight-link">乐鱼体育</a> 的原因——它把选择权留给用户，却始终在场。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ 摘要（非重复章节） -->
+  <section>
+    <h2 class="section-title">一些常见的问题</h2>
+    <div class="faq-summary">
+      <div class="faq-item">
+        <strong>为什么体育内容需要“安静”一点？</strong>
+        <span>因为真正热爱运动的人，往往不需要被鼓动。他们只需要准确的信息、真诚的叙述，以及一个不消费焦虑的空间。</span>
+      </div>
+      <div class="faq-item">
+        <strong>如何判断一个体育平台是否适合自己？</strong>
+        <span>看它的内容节奏是否与你合拍。如果它既不夸大也不贬低，只是认真呈现体育的多面性，那大概率值得停留。</span>
+      </div>
+      <div class="faq-item">
+        <strong>“乐鱼”这个名字有什么寓意吗？</strong>
+        <span>你可以把它理解为一种轻松的体育态度——像鱼在水中一样自在，也像运动本身那样自然流淌。</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- 页尾访问提示 -->
+<footer>
+  <div class="footer-inner">
+    <p><span class="tagline">乐鱼体育</span> · 主场叙事</p>
+    <p>在自然与竞技之间，找到你的节奏。<br>了解更多，前往 <a href="https://le-yu-ty.com.cn" style="color: #dbb87c; text-decoration: underline; text-underline-offset: 3px;">乐鱼体育</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
