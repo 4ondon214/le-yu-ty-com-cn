@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 发现好游戏</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f7fa;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        .hero {
+            background: linear-gradient(145deg, #0c1828 0%, #1a2a3c 100%);
+            color: #eef2f6;
+            padding: 5rem 1.5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -15%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(99,134,209,0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.75rem;
+        }
+        .hero p {
+            max-width: 620px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+            color: #b6c8db;
+        }
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 5rem;
+        }
+        .section-title {
+            font-size: 1.7rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.01em;
+            color: #0f1a2b;
+        }
+        .section-sub {
+            color: #546e7a;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            border-left: 4px solid #3b82f6;
+            padding-left: 1rem;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0 3rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 1.5rem 1.8rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+            border: 1px solid #edf2f7;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 36px rgba(0,20,40,0.08);
+            border-color: #d0e0f0;
+        }
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #0b1c2e;
+        }
+        .card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+            display: inline-block;
+        }
+        .card p {
+            font-size: 0.95rem;
+            color: #334155;
+        }
+        .audience-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.2rem;
+            margin: 1.8rem 0 2.8rem;
+        }
+        .audience-item {
+            background: #eef2f9;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #1e3a5f;
+            border: 1px solid #dce6f2;
+        }
+        .link-paragraph {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 2rem 2.2rem;
+            margin: 2.5rem 0 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border: 1px solid #e9eef5;
+            font-size: 1.05rem;
+        }
+        .link-paragraph a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid #b3d0ff;
+            transition: border-color 0.15s, color 0.15s;
+        }
+        .link-paragraph a:hover {
+            border-bottom-color: #2563eb;
+            color: #0a4bcf;
+        }
+        .faq-summary {
+            margin-top: 3rem;
+            padding: 1.8rem 2rem;
+            background: #f1f5fb;
+            border-radius: 20px;
+            border-left: 6px solid #3b82f6;
+        }
+        .faq-summary h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            color: #0b1f33;
+        }
+        .faq-summary p {
+            color: #2c3e50;
+            margin-bottom: 0.6rem;
+        }
+        .faq-summary a {
+            color: #2563eb;
+            font-weight: 500;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #b3d0ff;
+        }
+        .footer-note {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid #dce2ec;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 640px) {
+            .hero h1 { font-size: 2rem; }
+            .hero { padding: 3.5rem 1.2rem 2.8rem; }
+            .card-grid { gap: 1.2rem; }
+            .link-paragraph { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <h1>🎮 爱游戏 · 值得认真对待的每一局</h1>
+        <p>从策略模拟到角色叙情，从轻度休闲到硬核挑战——这里聚合品质游戏内容，让选择更直接。</p>
+    </section>
+
+    <div class="container">
+        <div>
+            <h2 class="section-title">用途卡片 · 场景对应</h2>
+            <div class="section-sub">针对不同需求，提供清晰的游戏分类参考</div>
+            <div class="card-grid">
+                <div class="card">
+                    <span class="icon">🧩</span>
+                    <h3>碎片时间 · 轻量解压</h3>
+                    <p>三分钟一局的消除、跑酷、逻辑谜题，适合通勤等候、工作间隙切换状态。</p>
+                </div>
+                <div class="card">
+                    <span class="icon">📜</span>
+                    <h3>叙事沉浸 · 剧情驱动</h3>
+                    <p>丰富文本与分支选择，适合喜欢阅读、角色养成、世界探索的玩家。</p>
+                </div>
+                <div class="card">
+                    <span class="icon">⚔️</span>
+                    <h3>硬核竞技 · 操作至上</h3>
+                    <p>实时对抗、高难度动作、精确帧级操作，满足对反应与策略的双重考验。</p>
+                </div>
+                <div class="card">
+                    <span class="icon">🧑‍🤝‍🧑</span>
+                    <h3>社交开黑 · 组队乐趣</h3>
+                    <p>合作闯关、非对称对抗、多人在线，与朋友共享配合与默契瞬间。</p>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <h2 class="section-title">适合人群</h2>
+            <div class="section-sub">不论新手、进阶或骨灰玩家，都能找到落点</div>
+            <div class="audience-list">
+                <span class="audience-item">🎯 休闲玩家 · 碎片娱乐</span>
+                <span class="audience-item">📚 剧情爱好者 · 沉浸叙事</span>
+                <span class="audience-item">🕹️ 核心玩家 · 操作挑战</span>
+                <span class="audience-item">👥 社交型玩家 · 联机组队</span>
+                <span class="audience-item">🎨 独立游戏拥趸 · 美术与创意</span>
+                <span class="audience-item">🧠 策略迷 · 规划与经营</span>
+            </div>
+            <p style="color:#334155; max-width: 780px;">每个群体在 <a href="https://webm-i-game.com.cn" style="color:#2563eb; font-weight:600; text-decoration:underline; text-underline-offset:3px;">爱游戏</a> 都能通过标签、分类和社区推荐快速定位心仪内容，减少筛选时间，更多时间投入真正的乐趣。</p>
+        </div>
+
+        <div class="link-paragraph">
+            <p><strong>自然链接段落：</strong> 如果你对游戏的理解不止于消遣，而是视其为媒介与表达——那么将目光投向 <a href="https://webm-i-game.com.cn">爱游戏</a> 会发现更多：从独立杰作到经典重制，从机制拆解到速通故事，它不只罗列商品，更梳理脉络。在这里，每个标题都对应一种体验切片，每次点击都可能通往一个新的思考角度。建立自己的游戏档案，从一次安静的探索开始。</p>
+        </div>
+
+        <div class="faq-summary">
+            <h3>❓ FAQ 摘要 · 常被问到的几点</h3>
+            <p><strong>Q：</strong> 网站收录的游戏类型是否全面？<br>
+            <strong>A：</strong> 覆盖动作、冒险、策略、模拟、角色扮演、休闲、体育等主流品类，并持续补充冷门佳作。具体目录可参考 <a href="https://webm-i-game.com.cn">爱游戏</a> 分类导航。</p>
+            <p><strong>Q：</strong> 是否提供玩家评价或攻略参考？<br>
+            <strong>A：</strong> 每款游戏包含玩法简介、风格标签及社区评分摘要，不刻意堆砌数据，注重客观描述。</p>
+            <p><strong>Q：</strong> 如何获取最新游戏资讯？<br>
+            <strong>A：</strong> 通过站内更新日志和每周精选栏目，保持信息节奏，避免信息过载。</p>
+        </div>
+
+        <div class="footer-note">
+            <span>⸻ 发现游戏，也发现自己的偏好 ⸻</span><br>
+            <span style="margin-top: 0.5rem; display: inline-block;">© 爱游戏 · 基于真实体验的内容聚合</span>
+        </div>
+    </div>
+</body>
+</html>
