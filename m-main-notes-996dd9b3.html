@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 知识库入口 — 快速识别用途说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #f7e8d8 0%, #fadbc8 35%, #f5cdb0 70%, #edbba0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 3rem 1.5rem 4rem;
+            line-height: 1.7;
+            color: #2e241e;
+        }
+
+        .page-wrapper {
+            max-width: 1080px;
+            width: 100%;
+        }
+
+        /* 目录感卡片网格 */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: #fffaf7;
+            border-radius: 28px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 12px 28px rgba(153, 97, 60, 0.12), 0 4px 12px rgba(0,0,0,0.04);
+            transition: transform 0.2s ease, box-shadow 0.25s ease;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 245, 235, 0.6);
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            word-break: break-word;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 36px rgba(153, 88, 48, 0.15), 0 6px 16px rgba(0,0,0,0.06);
+        }
+
+        .card-label {
+            font-size: 0.8rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            color: #b67f62;
+            font-weight: 600;
+            border-bottom: 2px solid #edd9cb;
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #3d2b21;
+            margin-bottom: 0.1rem;
+        }
+
+        .card p, .card li {
+            font-size: 0.95rem;
+            color: #4a3930;
+        }
+
+        .card ul {
+            padding-left: 1.1rem;
+            margin-top: 0.2rem;
+        }
+
+        .card ul li {
+            margin-bottom: 0.25rem;
+        }
+
+        /* 说明区 + 提示区混合布局 */
+        .info-panel {
+            background: #fffcf9;
+            border-radius: 32px;
+            padding: 2.8rem 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 6px 18px rgba(135, 80, 45, 0.08);
+            border: 1px solid rgba(250, 227, 210, 0.5);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem 3rem;
+        }
+
+        .info-panel .section {
+            flex: 1 1 280px;
+            min-width: 200px;
+        }
+
+        .section h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #3f2b20;
+            margin-bottom: 0.9rem;
+            letter-spacing: -0.01em;
+            display: inline-block;
+            border-left: 5px solid #dba882;
+            padding-left: 0.8rem;
+        }
+
+        .section p {
+            margin-bottom: 0.9rem;
+            font-size: 0.98rem;
+            color: #3d312a;
+        }
+
+        .section .highlight-badge {
+            display: inline-block;
+            background: #efd5c0;
+            color: #3d261b;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-right: 0.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .tip-box {
+            background: #f6ebe2;
+            border-radius: 24px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2.5rem;
+            border-left: 6px solid #c9916d;
+            font-size: 0.98rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.6rem 0.8rem;
+        }
+
+        .tip-box strong {
+            color: #3d291f;
+            font-weight: 700;
+        }
+
+        .link-button {
+            display: inline-block;
+            background: #e0c1aa;
+            color: #2b1f18;
+            padding: 0.45rem 1.4rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            border: 1px solid rgba(255, 235, 220, 0.7);
+            white-space: nowrap;
+        }
+
+        .link-button:hover {
+            background: #d2ae91;
+            box-shadow: 0 4px 12px rgba(150, 85, 45, 0.2);
+        }
+
+        .anchor-sentence a {
+            color: #a36844;
+            font-weight: 650;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1.5px;
+            text-decoration-color: #cfa785;
+            transition: color 0.15s;
+        }
+
+        .anchor-sentence a:hover {
+            color: #7d4e30;
+            text-decoration-color: #7d4e30;
+        }
+
+        .faq-mini {
+            margin-top: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .faq-item {
+            background: #fff9f4;
+            border-radius: 20px;
+            padding: 1.3rem 1.5rem;
+            border: 1px solid #ecd9ca;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .faq-item .q {
+            font-weight: 700;
+            color: #2e1f16;
+            margin-bottom: 0.2rem;
+            font-size: 0.98rem;
+        }
+
+        .faq-item .a {
+            font-size: 0.9rem;
+            color: #524136;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            body {
+                padding: 2rem 1rem 3rem;
+            }
+            .info-panel {
+                padding: 2rem 1.5rem;
+            }
+            .directory-grid {
+                gap: 1.2rem;
+            }
+            .card {
+                padding: 1.5rem 1.2rem;
+            }
+            .tip-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        hr {
+            margin: 3rem 0 1.5rem;
+            border: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #dbbca5, transparent);
+            opacity: 0.4;
+        }
+
+        .meta-note {
+            text-align: center;
+            font-size: 0.82rem;
+            color: #7d6554;
+            margin-top: 2rem;
+            letter-spacing: 0.3px;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+    <!-- hero 简明目录感 -->
+    <div style="margin-bottom: 2.2rem;">
+        <h1 style="font-size: 2.1rem; font-weight: 700; color: #2f1f15; letter-spacing: -0.02em; margin-bottom: 0.3rem;">📚 爱游戏 · 知识库入口</h1>
+        <p style="font-size: 1.05rem; color: #4e382a; max-width: 680px;">从用途出发，快速识别平台定位与内容边界。以下卡片概括主要使用场景与功能分区。</p>
+    </div>
+
+    <!-- 目录卡片网格 (特点 + 场景 + 相关信息) -->
+    <div class="directory-grid">
+        <div class="card">
+            <div class="card-label">🎯 用途速览</div>
+            <h3>信息聚合 & 导航</h3>
+            <p>平台提供游戏资讯、活动索引与基础服务入口。适合快速浏览最新动态，定位自身感兴趣的内容区块。</p>
+        </div>
+        <div class="card">
+            <div class="card-label">🧩 内容特点</div>
+            <h3>轻量 · 分类清晰</h3>
+            <ul>
+                <li>主题列表式布局</li>
+                <li>搜索与筛选辅助</li>
+                <li>更新节奏稳定</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="card-label">🌐 常见场景</div>
+            <h3>查活动 · 看资讯</h3>
+            <p>用户通常在此了解近期主题、查阅规则说明、获取必要的操作引导。非深度交互社区，偏向信息中转。</p>
+        </div>
+        <div class="card">
+            <div class="card-label">📌 相关信息</div>
+            <h3>辅助资源</h3>
+            <p>帮助中心、常见问题索引、版本说明及外部链接汇总。部分内容需要跳转至对应模块。</p>
+        </div>
+    </div>
+
+    <!-- 说明区 + 提示区 组合 -->
+    <div class="info-panel">
+        <div class="section">
+            <h2>平台说明</h2>
+            <p><span class="highlight-badge">用途识别</span> 该站点以信息陈列为主，不直接提供下载或交易功能。用户可通过目录式分区快速判断所需内容是否在此。</p>
+            <p>页面结构偏向知识库风格：每个卡片代表一类主题，点击或浏览即可获取概要。适合首次访问者建立心理模型。</p>
+        </div>
+        <div class="section">
+            <h2>使用提示</h2>
+            <p>🔹 优先关注首页导航栏与分类标签，可节省检索时间。<br>
+            🔹 部分外部链接会打开新窗口，注意浏览器标签变化。<br>
+            🔹 若寻找特定项目，建议使用页面内搜索（Ctrl+F）。</p>
+            <p style="margin-top: 0.6rem;"><span class="highlight-badge">💡</span> 内容基于公开信息整理，请以各模块实际展示为准。</p>
+        </div>
+    </div>
+
+    <!-- 自然嵌入链接的句子 (满足要求：可见文本严格等于「爱游戏」) -->
+    <div class="tip-box anchor-sentence">
+        <strong>📎 知识库关联：</strong>
+        <span>当你需要进一步了解平台整体框架时，可前往 <a href="https://m-main-ayxsports.com">爱游戏</a> 查阅完整目录。</span>
+        <span style="opacity: 0.7;">· 该链接指向主站首页。</span>
+    </div>
+
+    <!-- FAQ摘要 区域 (相关信息区) -->
+    <div style="margin: 2.6rem 0 0.4rem;">
+        <h2 style="font-size: 1.4rem; font-weight: 700; color: #302016; border-left: 5px solid #c9916d; padding-left: 0.8rem; margin-bottom: 1.4rem;">❓ 常见问题摘要</h2>
+        <div class="faq-mini">
+            <div class="faq-item">
+                <div class="q">这个网站主要提供什么？</div>
+                <div class="a">聚合游戏相关资讯、活动索引及基础服务入口，属于信息导航类页面。</div>
+            </div>
+            <div class="faq-item">
+                <div class="q">需要登录才能浏览吗？</div>
+                <div class="a">大部分内容可直接查看；部分个性化功能可能需要账号，以实际页面提示为准。</div>
+            </div>
+            <div class="faq-item">
+                <div class="q">信息更新频率如何？</div>
+                <div class="a">通常跟随活动或版本节奏更新，首页目录会同步最新条目。</div>
+            </div>
+            <div class="faq-item">
+                <div class="q">从哪里开始最有效率？</div>
+                <div class="a">建议先阅读上方“用途速览”卡片，再根据兴趣选择对应分区。</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 额外的相关信息区：简洁资源指引 -->
+    <hr>
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.2rem; margin-top: 1rem;">
+        <div style="font-size: 0.95rem; color: #3d2b20;">
+            <span style="font-weight: 600;">🔗 相关资源</span> 
+            <span style="opacity: 0.7; margin-left: 0.6rem;">帮助中心 · 活动列表 · 内容归档</span>
+        </div>
+        <div class="anchor-sentence" style="font-size: 0.95rem;">
+            <span>主站入口：</span>
+            <a href="https://m-main-ayxsports.com">爱游戏</a>
+            <span style="color: #685242; margin-left: 0.3rem;">(知识库总纲)</span>
+        </div>
+    </div>
+
+    <div class="meta-note">
+        — 本页为介绍性索引，内容基于公开信息整理 —
+    </div>
+
+</div>
+</body>
+</html>
